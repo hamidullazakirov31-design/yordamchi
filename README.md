@@ -27,7 +27,10 @@ orqali eslatma yuboradi.
 ## Hujjatlar
 
 To'liq texnik hujjat (PRD), ma'lumot modeli, AI qismi, cheklovlar, xatarlar va
-4 ta sprint rejasi: [`docs/PRD.md`](docs/PRD.md).
+umumiy sprint rejasi: [`PRD.md`](PRD.md).
+
+Har bir sprint uchun batafsil hujjatlar `sprints/` papkasida:
+[`sprints/README.md`](sprints/README.md).
 
 ## Loyiha holati
 

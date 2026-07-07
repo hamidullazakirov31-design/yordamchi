@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yordamchi — Sprint Dashboard</title>
+<style>
+  :root {
+    --bg: #f4f6fb;
+    --card: #ffffff;
+    --text: #1a2233;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --track: #eef2f7;
+    --shadow: 0 1px 3px rgba(16,24,40,.06), 0 8px 24px rgba(16,24,40,.05);
+    --accent: #4f46e5;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0e1320;
+      --card: #161d2e;
+      --text: #e8edf7;
+      --muted: #94a3b8;
+      --border: #263149;
+      --track: #202a40;
+      --shadow: 0 1px 3px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+      --accent: #818cf8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px 64px; }
+
+  header.page { margin-bottom: 28px; }
+  .eyebrow {
+    display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 8px;
+  }
+  h1 { margin: 0 0 6px; font-size: clamp(26px, 4vw, 34px); font-weight: 800; letter-spacing: -.02em; }
+  .subtitle { margin: 0; color: var(--muted); font-size: 15px; }
+
+  /* Summary stats */
+  .stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin: 26px 0 30px;
+  }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 16px 18px; box-shadow: var(--shadow);
+  }
+  .stat .num { font-size: 28px; font-weight: 800; letter-spacing: -.02em; }
+  .stat .lbl { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+  /* Overall progress */
+  .overall {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 18px 20px; box-shadow: var(--shadow); margin-bottom: 30px;
+  }
+  .overall .row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+  .overall .row strong { font-size: 15px; }
+  .overall .row span { color: var(--muted); font-size: 13px; }
+  .bar { height: 10px; border-radius: 999px; background: var(--track); overflow: hidden; }
+  .bar > i {
+    display: block; height: 100%; border-radius: 999px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  }
+
+  /* Sprint cards */
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 22px; box-shadow: var(--shadow); position: relative;
+    border-top: 4px solid var(--tone, var(--accent));
+    display: flex; flex-direction: column;
+  }
+  .card .top { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+  .badge-num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 9px; font-weight: 800; font-size: 14px;
+    background: color-mix(in srgb, var(--tone) 15%, transparent); color: var(--tone);
+  }
+  .card h2 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; flex: 1; }
+  .card .desc { color: var(--muted); font-size: 14px; margin: 10px 0 16px; flex: 1; }
+  .card ul { margin: 0 0 16px; padding-left: 18px; color: var(--muted); font-size: 13px; }
+  .card ul li { margin-bottom: 3px; }
+
+  .status {
+    display: inline-flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600;
+    padding: 5px 11px; border-radius: 999px;
+  }
+  .status .dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .st-planned { color: #64748b; background: color-mix(in srgb, #64748b 14%, transparent); }
+  .st-progress { color: #d97706; background: color-mix(in srgb, #d97706 15%, transparent); }
+  .st-done { color: #16a34a; background: color-mix(in srgb, #16a34a 15%, transparent); }
+
+  .card .foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; }
+  .card .link { font-size: 12.5px; color: var(--accent); text-decoration: none; font-weight: 600; }
+  .card .link:hover { text-decoration: underline; }
+
+  footer.page { margin-top: 34px; text-align: center; color: var(--muted); font-size: 12.5px; }
+  footer.page a { color: var(--accent); text-decoration: none; }
+
+  @media (max-width: 720px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="page">
+    <span class="eyebrow">Yordamchi Platformasi</span>
+    <h1>Sprint Dashboard</h1>
+    <p class="subtitle">Maqsad-vazifa boshqaruv platformasi — 4 ta ketma-ket sprint holati</p>
+  </header>
+
+  <section class="stats">
+    <div class="stat"><div class="num">4</div><div class="lbl">Jami sprint</div></div>
+    <div class="stat"><div class="num" style="color:#16a34a">0</div><div class="lbl">Yakunlangan</div></div>
+    <div class="stat"><div class="num" style="color:#d97706">0</div><div class="lbl">Jarayonda</div></div>
+    <div class="stat"><div class="num" style="color:#64748b">4</div><div class="lbl">Rejalashtirilgan</div></div>
+  </section>
+
+  <section class="overall">
+    <div class="row">
+      <strong>Umumiy progress</strong>
+      <span>Reja bosqichi yakunlandi · ishlab chiqish boshlanmagan</span>
+    </div>
+    <div class="bar"><i style="width:5%"></i></div>
+  </section>
+
+  <section class="grid">
+
+    <!-- Sprint 1 -->
+    <article class="card" style="--tone:#3b82f6">
+      <div class="top">
+        <span class="badge-num">1</span>
+        <h2>Dizayn va Ekranlar</h2>
+      </div>
+      <p class="desc">UI/UX dizayn tizimi, qayta ishlatiladigan komponentlar va 9 ta asosiy ekran maketi (light + dark). Interaktiv prototip va user flow'lar.</p>
+      <ul>
+        <li>Dizayn tizimi (rang, tipografiya, spacing)</li>
+        <li>12+ komponent (UI kit)</li>
+        <li>9 ekran + interaktiv prototip</li>
+      </ul>
+      <div class="foot">
+        <span class="status st-planned"><span class="dot"></span>Rejalashtirilgan</span>
+        <a class="link" href="sprints/sprint-1-dizayn-va-ekranlar.md">Batafsil →</a>
+      </div>
+    </article>
+
+    <!-- Sprint 2 -->
+    <article class="card" style="--tone:#22c55e">
+      <div class="top">
+        <span class="badge-num">2</span>
+        <h2>DB, Backend, Avtorizatsiya, CRUD</h2>
+      </div>
+      <p class="desc">PostgreSQL + Prisma sxema, foydalanuvchi avtorizatsiyasi va maqsad → kichik maqsad → vazifa uchun to'liq CRUD API. Progress avtomatik hisoblash.</p>
+      <ul>
+        <li>Prisma sxema + migratsiyalar</li>
+        <li>Auth (email, sessiya, himoya)</li>
+        <li>To'liq CRUD + frontend ulanishi</li>
+      </ul>
+      <div class="foot">
+        <span class="status st-planned"><span class="dot"></span>Rejalashtirilgan</span>
+        <a class="link" href="sprints/sprint-2-db-bekend-avtorizatsiya-crud.md">Batafsil →</a>
+      </div>
+    </article>
+
+    <!-- Sprint 3 -->
+    <article class="card" style="--tone:#f59e0b">
+      <div class="top">
+        <span class="badge-num">3</span>
+        <h2>Asosiy Funksiyalar, AI va Kalendar</h2>
+      </div>
+      <p class="desc">Claude AI dvigateli (maqsadni bo'lish, avto-tartiblash, kunlik tahlil, haftalik hisobot) va Google Calendar bilan ikki tomonlama sinxronizatsiya.</p>
+      <ul>
+        <li>4 ta AI funksiya (JSON + validatsiya)</li>
+        <li>Google Calendar ikki tomonlama</li>
+        <li>AI xarajat kuzatuvi (jurnal)</li>
+      </ul>
+      <div class="foot">
+        <span class="status st-planned"><span class="dot"></span>Rejalashtirilgan</span>
+        <a class="link" href="sprints/sprint-3-asosiy-funksiyalar-ai-va-kalendar.md">Batafsil →</a>
+      </div>
+    </article>
+
+    <!-- Sprint 4 -->
+    <article class="card" style="--tone:#ef4444">
+      <div class="top">
+        <span class="badge-num">4</span>
+        <h2>Testlash, Telegram Bot, Mini Web App</h2>
+      </div>
+      <p class="desc">Interaktiv Telegram bot, avtomatik scheduler (eslatma/tahlil), Telegram ichidagi mini web app, testlash va production deploy.</p>
+      <ul>
+        <li>Telegram bot (ikki tomonlama CRUD)</li>
+        <li>Scheduler + mini web app</li>
+        <li>Test to'plami + deploy</li>
+      </ul>
+      <div class="foot">
+        <span class="status st-planned"><span class="dot"></span>Rejalashtirilgan</span>
+        <a class="link" href="sprints/sprint-4-testlash-telegram-bot-mini-web-app.md">Batafsil →</a>
+      </div>
+    </article>
+
+  </section>
+
+  <footer class="page">
+    To'liq texnik hujjat: <a href="PRD.md">PRD.md</a> · Sprintlar: <a href="sprints/README.md">sprints/</a>
+    <br>Yordamchi — Maqsad-Vazifa Boshqaruv Platformasi
+  </footer>
+
+</div>
+</body>
+</html>

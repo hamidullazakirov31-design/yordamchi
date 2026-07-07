@@ -82,3 +82,9 @@ statik/interaktiv UI.
 Sprint 2 (DB + backend) shu ekranlar asosida ma'lumot modelini va API'larni
 quradi. Shuning uchun ekranlardagi barcha maydonlar (vazifa maydonlari, maqsad
 maydonlari) aniq belgilanган bo'lishi shart.
+
+## 📝 Bajarilgan ishlar (hisobot)
+
+### 2026-07-07
+- Sprint rejasi to'liq hujjatlashtirildi: dizayn tizimi, UI kit, 9 ta ekran, user flow'lar va deliverable'lar aniqlandi — `85dae5d`.
+- **Holat:** Reja va tayyorgarlik bosqichi yakunlandi. Amaliy dizayn ishi (dizayn tokenlari, komponentlar kutubxonasi, ekran maketlari, interaktiv prototip) hali **boshlanmagan** — quyidagi DoD bandlari tegishli deliverable'lar tayyor bo'lgach belgilanadi.

@@ -90,3 +90,9 @@ deploy. Bu sprint oxirida to'liq ishlaydigan MVP tayyor bo'ladi.
 Ushbu sprint tugagach, to'liq ishlaydigan MVP tayyor: web ilova + AI yordamchi +
 Google Calendar + interaktiv Telegram bot va mini web app. Keyingi bosqichlar
 (v2) uchun asos yaratilgan.
+
+## 📝 Bajarilgan ishlar (hisobot)
+
+### 2026-07-07
+- Sprint rejasi to'liq hujjatlashtirildi: Telegram bot, scheduler, mini web app, testlash va deploy qamrovi aniqlandi — `85dae5d`.
+- **Holat:** Reja bosqichi yakunlandi. Amaliy ishlanma (Telegram bot, avtomatik scheduler, mini web app, testlar, deploy) hali **boshlanmagan** — DoD bandlari tegishli komponentlar tayyor bo'lgach belgilanadi.

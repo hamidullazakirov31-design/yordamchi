@@ -81,3 +81,9 @@ mahsulotning "yuragi".
 Sprint 4 (Telegram + scheduler) shu AI funksiyalarini **avtomatik** ishga tushiradi
 (ertalabki reja, kechqurun tahlil, haftalik hisobot) va natijalarni Telegram
 orqali yetkazadi.
+
+## 📝 Bajarilgan ishlar (hisobot)
+
+### 2026-07-07
+- Sprint rejasi to'liq hujjatlashtirildi: AI funksiyalari, Google Calendar sinxroni va AIInteraction jurnali qamrovi aniqlandi — `85dae5d`.
+- **Holat:** Reja bosqichi yakunlandi. Amaliy ishlanma (AI dvigateli, kalendar sinxroni, xarajat kuzatuvi) hali **boshlanmagan** — DoD bandlari tegishli funksiyalar ishga tushgach belgilanadi.

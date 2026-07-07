@@ -85,3 +85,9 @@ RESTful yoki Next.js API routes / server actions orqali:
 Sprint 3 (AI + kalendar) shu ma'lumot modeli va CRUD ustiga quriladi:
 `AIInteraction`, `DailyPlan`, `Task.calendarEventId`, `User.googleTokens`
 maydonlaridan foydalaniladi.
+
+## 📝 Bajarilgan ishlar (hisobot)
+
+### 2026-07-07
+- Sprint rejasi to'liq hujjatlashtirildi: ma'lumot modeli, auth, CRUD API va progress hisoblash qamrovi aniqlandi — `85dae5d`.
+- **Holat:** Reja bosqichi yakunlandi. Amaliy ishlanma (Prisma sxema, migratsiyalar, auth, CRUD API, frontend ulanishi) hali **boshlanmagan** — DoD bandlari kod va baza tayyor bo'lgach belgilanadi.

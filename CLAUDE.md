@@ -55,6 +55,7 @@ Push qilishdan oldingi tartib:
 - **Qaror:** MVP yadrosi — avval vazifa boshqaruvi, keyin AI va integratsiyalar. — **Sabab:** ishlaydigan asos tez tayyor bo'lsin. (Reja)
 - **Qaror:** Barcha loyiha fayllari `yordamchi` repository'sida saqlanadi. — **Sabab:** yagona manba. (Reja)
 - **Qaror:** Sprintlar tartibi: (1) Dizayn va ekranlar, (2) DB/backend/auth/CRUD, (3) Asosiy funksiyalar + AI + kalendar, (4) Testlash + Telegram bot + mini web app. — **Sabab:** poydevordan funksiyaga izchil o'sish. (Reja)
+- **Qaror:** Loyiha holatini yuritish uchun `hisobotchi` agent tizimi joriy etildi (`.claude/agents/hisobotchi.md`, `.claude/hooks`, `.claude/settings.json`) va `CLAUDE.md` orqali majburiy workflow belgilandi. — **Sabab:** sprint hujjatlari, qarorlar jurnali va dashboard doimo aktual holatni aks ettirishi uchun; har `git push`dan oldin avtomatik hisobot. (Infratuzilma)
 
 ## 📏 Uslub qoidalari
 - Barcha hujjat va izohlar **o'zbek tilida**.

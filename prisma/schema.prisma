@@ -1,0 +1,112 @@
+// Yordamchi — ma'lumotlar bazasi sxemasi (backend asosi)
+// PRD 5-bo'lim (Ma'lumot modeli) asosida. Migratsiyalar keyingi bosqichda.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Holat {
+  REJADA
+  JARAYONDA
+  BAJARILDI
+}
+
+model User {
+  id             String   @id @default(cuid())
+  // Telegram deep-link auth uchun asosiy identifikator
+  telegramId     BigInt   @unique
+  telegramUser   String?
+  ism            String?
+  timezone       String   @default("Asia/Tashkent")
+  googleTokens   Json?
+  yaratilganSana DateTime @default(now())
+
+  goals      Goal[]
+  tasks      Task[]
+  dailyPlans DailyPlan[]
+  aiLogs     AIInteraction[]
+}
+
+model Goal {
+  id             String    @id @default(cuid())
+  userId         String
+  sarlavha       String
+  tavsif         String?
+  muddat         DateTime?
+  holat          Holat     @default(REJADA)
+  progress       Int       @default(0)
+  yaratilganSana DateTime  @default(now())
+
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestones Milestone[]
+}
+
+model Milestone {
+  id       String @id @default(cuid())
+  goalId   String
+  sarlavha String
+  tartib   Int    @default(0)
+  holat    Holat  @default(REJADA)
+  progress Int    @default(0)
+
+  goal  Goal   @relation(fields: [goalId], references: [id], onDelete: Cascade)
+  tasks Task[]
+}
+
+model Task {
+  id              String    @id @default(cuid())
+  userId          String
+  milestoneId     String?
+  sarlavha        String
+  tavsif          String?
+  muddat          DateTime?
+  boshlanishVaqti DateTime?
+  davomiylik      Int? // daqiqalarda
+  muhimlik        Int       @default(2) // 1..3
+  holat           Holat     @default(REJADA)
+  calendarEventId String?
+  yaratilganSana  DateTime  @default(now())
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestone Milestone? @relation(fields: [milestoneId], references: [id], onDelete: SetNull)
+  reminders Reminder[]
+}
+
+model DailyPlan {
+  id                    String   @id @default(cuid())
+  userId                String
+  sana                  DateTime
+  aiTahlilMatni         String?
+  tavsiyaEtilganVazifalar Json?
+  yaratilganSana        DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model AIInteraction {
+  id            String   @id @default(cuid())
+  userId        String
+  tur           String
+  kirishKontekst String?
+  chiqishNatija String?
+  model         String?
+  tokenlar      Int?
+  sana          DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Reminder {
+  id         String   @id @default(cuid())
+  taskId     String
+  vaqt       DateTime
+  kanal      String   @default("telegram")
+  yuborildimi Boolean @default(false)
+
+  task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
+}

@@ -59,6 +59,8 @@ Push qilishdan oldingi tartib:
 
 ### 2026-07-14
 - **Qaror:** Vercel avtomatik deploy pipeline'ini tekshirish uchun repozitoriya ildiziga vaqtinchalik test `index.html` sahifasi qo'shildi. — **Sabab:** deploy workflow to'g'ri ishlayotganini tasdiqlash; loyiha kodi yoki sprint ishiga aloqasi yo'q, faqat infratuzilma tekshiruvi. (Infratuzilma)
+- **Qaror:** Avtorizatsiya usuli — Email+parol (NextAuth) o'rniga **Telegram deep-link avtorizatsiya**, faqat bitta ruxsat etilgan Telegram ID (`ALLOWED_TELEGRAM_ID`) uchun, stateless JWT (`jose`) sessiya bilan. — **Sabab:** loyiha shaxsiy, bitta foydalanuvchi uchun mo'ljallangan; ro'yxatdan o'tish/parol boshqaruvi ortiqcha; stateless JWT serverless (Vercel) muhitida DB'siz ishlaydi. (Sprint 2)
+- **Qaror:** Texnik stack tasdiqlandi va amalda qo'llanildi: Next.js 14 + TypeScript + Tailwind, grammY (Telegram bot/webhook), `jose` (JWT), Prisma (ma'lumot modeli). — **Sabab:** rejadagi stack ishlab chiqarishda tasdiqlandi, birinchi ishlaydigan skelet shu asosda qurildi. (Sprint 2)
 
 ## 📏 Uslub qoidalari
 - Barcha hujjat va izohlar **o'zbek tilida**.

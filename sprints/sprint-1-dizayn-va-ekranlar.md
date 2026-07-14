@@ -88,3 +88,6 @@ maydonlari) aniq belgilanган bo'lishi shart.
 ### 2026-07-07
 - Sprint rejasi to'liq hujjatlashtirildi: dizayn tizimi, UI kit, 9 ta ekran, user flow'lar va deliverable'lar aniqlandi — `85dae5d`.
 - **Holat:** Reja va tayyorgarlik bosqichi yakunlandi. Amaliy dizayn ishi (dizayn tokenlari, komponentlar kutubxonasi, ekran maketlari, interaktiv prototip) hali **boshlanmagan** — quyidagi DoD bandlari tegishli deliverable'lar tayyor bo'lgach belgilanadi.
+
+### 2026-07-14
+- **Eslatma:** Foydalanuvchi `229bf3d` commitini "Sprint 1 / 1-qism" deb nomladi (Telegram orqali kirish), ammo mazmunan bu ish (Telegram deep-link avtorizatsiya + backend/Prisma asosi) **Sprint 2**ning (DB/backend/avtorizatsiya) qamroviga tegishli — batafsil hisobot [`sprint-2`](sprint-2-db-bekend-avtorizatsiya-crud.md#-bajarilgan-ishlar-hisobot) faylida. Bu sprintning (dizayn/ekranlar) o'zida hali amaliy ish **boshlanmagan**, DoD o'zgarishsiz qoladi.

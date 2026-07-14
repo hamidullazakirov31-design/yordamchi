@@ -1,6 +1,6 @@
 // Kirish sahifasi — Telegram deep-link orqali avtorizatsiya.
 
-const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME ?? "";
+const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME ?? "zxi540bot";
 
 export const dynamic = "force-dynamic";
 

@@ -3,6 +3,7 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import { verifyAuthLink, signSession, SESSION_COOKIE } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -25,6 +26,22 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
   try {
     const user = await verifyAuthLink(token);
+
+    // Foydalanuvchini bazaga yozamiz (yoki yangilaymiz). DB xatosi login'ni to'xtatmasin.
+    try {
+      await prisma.user.upsert({
+        where: { telegramId: BigInt(user.telegramId) },
+        update: { telegramUser: user.username ?? null, ism: user.ism ?? null },
+        create: {
+          telegramId: BigInt(user.telegramId),
+          telegramUser: user.username ?? null,
+          ism: user.ism ?? null,
+        },
+      });
+    } catch (e) {
+      console.error("User upsert xatosi (login davom etadi):", e);
+    }
+
     const session = await signSession(user);
 
     const res = NextResponse.redirect(redirectTo("/dashboard"));

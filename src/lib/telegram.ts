@@ -21,8 +21,8 @@ export function getBot(): Bot {
     const fromId = ctx.from?.id;
     if (!fromId) return;
 
-    // Faqat ruxsat etilgan yagona foydalanuvchi
-    if (String(fromId) !== env.allowedTelegramId) {
+    // Faqat ruxsat etilgan foydalanuvchi(lar)
+    if (!env.isAllowed(fromId)) {
       await ctx.reply(
         "⛔ Kechirasiz, bu shaxsiy yordamchi. Sizga kirishga ruxsat berilmagan."
       );

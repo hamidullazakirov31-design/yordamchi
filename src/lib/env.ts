@@ -13,9 +13,16 @@ export const env = {
   get botToken() {
     return req("TELEGRAM_BOT_TOKEN");
   },
-  // Maxfiy emas — kodda default bor, lekin env orqali almashtirish mumkin
-  get allowedTelegramId() {
-    return process.env.ALLOWED_TELEGRAM_ID ?? "1271615246";
+  // Maxfiy emas — kodda default bor, lekin env orqali almashtirish mumkin.
+  // Bir nechta ruxsat etilgan ID vergul bilan berilishi mumkin: "111,222".
+  get allowedTelegramIds() {
+    return (process.env.ALLOWED_TELEGRAM_ID ?? "1271615246")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
+  },
+  isAllowed(id: string | number) {
+    return this.allowedTelegramIds.includes(String(id));
   },
   get appUrl() {
     return process.env.NEXT_PUBLIC_APP_URL ?? "https://yordamchi-dusky.vercel.app";

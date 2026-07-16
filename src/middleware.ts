@@ -1,7 +1,10 @@
-// Route himoyasi — faqat yaroqli sessiyaga ega foydalanuvchi /dashboard'ga kiradi.
+// Route himoyasi — faqat yaroqli sessiyaga ega foydalanuvchi ilova sahifalariga kiradi.
 
 import { NextRequest, NextResponse } from "next/server";
 import { verifySession, SESSION_COOKIE } from "@/lib/auth";
+
+// Himoyalangan sahifa prefikslari
+const PROTECTED = ["/goals", "/tasks", "/kun-tahlili", "/ai-xulosasi", "/dashboard"];
 
 export async function middleware(req: NextRequest): Promise<NextResponse> {
   const token = req.cookies.get(SESSION_COOKIE)?.value;
@@ -19,16 +22,16 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
   const { pathname } = req.nextUrl;
 
   // Himoyalangan sahifa — sessiya bo'lmasa login'ga
-  if (pathname.startsWith("/dashboard") && !valid) {
+  if (PROTECTED.some((p) => pathname === p || pathname.startsWith(p + "/")) && !valid) {
     const url = req.nextUrl.clone();
     url.pathname = "/login";
     return NextResponse.redirect(url);
   }
 
-  // Allaqachon kirgan bo'lsa — login sahifasidan dashboard'ga
+  // Allaqachon kirgan bo'lsa — login sahifasidan maqsadlarga
   if (pathname === "/login" && valid) {
     const url = req.nextUrl.clone();
-    url.pathname = "/dashboard";
+    url.pathname = "/goals";
     return NextResponse.redirect(url);
   }
 
@@ -36,5 +39,12 @@ export async function middleware(req: NextRequest): Promise<NextResponse> {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/login"],
+  matcher: [
+    "/goals/:path*",
+    "/tasks/:path*",
+    "/kun-tahlili/:path*",
+    "/ai-xulosasi/:path*",
+    "/dashboard/:path*",
+    "/login",
+  ],
 };

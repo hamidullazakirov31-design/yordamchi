@@ -44,7 +44,7 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
     const session = await signSession(user);
 
-    const res = NextResponse.redirect(redirectTo("/dashboard"));
+    const res = NextResponse.redirect(redirectTo("/goals"));
     res.cookies.set(SESSION_COOKIE, session, {
       httpOnly: true,
       secure: true,

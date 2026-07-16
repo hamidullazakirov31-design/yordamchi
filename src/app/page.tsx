@@ -1,6 +1,6 @@
 import { redirect } from "next/navigation";
 
 export default function Home() {
-  // Bosh sahifa dashboard'ga yo'naltiradi; middleware sessiyani tekshiradi.
-  redirect("/dashboard");
+  // Bosh sahifa maqsadlar sahifasiga yo'naltiradi; layout/middleware sessiyani tekshiradi.
+  redirect("/goals");
 }

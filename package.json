@@ -8,7 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate deploy",
+    "db:seed": "node prisma/seed.mjs",
     "set-webhook": "node scripts/set-webhook.mjs"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",

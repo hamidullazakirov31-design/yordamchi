@@ -1,4 +1,4 @@
-// Kirish sahifasi — Telegram deep-link orqali avtorizatsiya.
+// Kirish sahifasi — Telegram deep-link orqali avtorizatsiya (Aurora dizayn).
 
 const BOT_USERNAME = process.env.NEXT_PUBLIC_BOT_USERNAME ?? "zxi540bot";
 
@@ -9,9 +9,7 @@ export default function LoginPage({
 }: {
   searchParams: { error?: string };
 }) {
-  const deepLink = BOT_USERNAME
-    ? `https://t.me/${BOT_USERNAME}?start=login`
-    : "#";
+  const deepLink = BOT_USERNAME ? `https://t.me/${BOT_USERNAME}?start=login` : "#";
 
   const errorText =
     searchParams.error === "invalid"
@@ -21,31 +19,73 @@ export default function LoginPage({
         : null;
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4">
-      <div className="w-full max-w-sm rounded-2xl border border-slate-800 bg-slate-900 p-8 text-center shadow-xl">
-        <div className="mb-2 text-3xl">🎯</div>
-        <h1 className="text-2xl font-bold">Yordamchi</h1>
-        <p className="mt-2 text-sm text-slate-400">
+    <main
+      style={{
+        display: "flex",
+        minHeight: "100vh",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "var(--space-4)",
+        background: "var(--color-bg)",
+      }}
+    >
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 380,
+          background: "var(--color-surface)",
+          border: "1px solid var(--color-border)",
+          borderRadius: "var(--radius-lg)",
+          boxShadow: "var(--shadow-card)",
+          padding: "var(--space-6)",
+          textAlign: "center",
+        }}
+      >
+        <div style={{ fontSize: 32, marginBottom: "var(--space-2)" }}>🎯</div>
+        <h1 style={{ margin: 0, fontSize: "var(--text-xl)", fontWeight: "var(--weight-bold)", color: "var(--color-text)" }}>
+          Yordamchi
+        </h1>
+        <p style={{ marginTop: "var(--space-2)", fontSize: "var(--text-sm)", color: "var(--color-text-muted)" }}>
           Shaxsiy maqsad-vazifa boshqaruv platformasi
         </p>
 
         {errorText && (
-          <p className="mt-4 rounded-lg bg-red-500/10 px-3 py-2 text-sm text-red-400">
+          <p
+            style={{
+              marginTop: "var(--space-3)",
+              borderRadius: "var(--radius-md)",
+              background: "var(--color-danger-tint)",
+              color: "var(--color-danger)",
+              padding: "var(--space-2) var(--space-3)",
+              fontSize: "var(--text-sm)",
+            }}
+          >
             {errorText}
           </p>
         )}
 
         <a
           href={deepLink}
-          className="mt-6 flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 font-semibold text-white transition hover:bg-brand-dark"
+          style={{
+            marginTop: "var(--space-4)",
+            display: "flex",
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "var(--space-2)",
+            borderRadius: "var(--radius-md)",
+            background: "var(--color-primary)",
+            padding: "var(--space-3) var(--space-4)",
+            fontWeight: "var(--weight-semibold)",
+            color: "var(--color-text-on-primary)",
+            textDecoration: "none",
+          }}
         >
-          <span>✈️</span>
-          Telegram orqali kirish
+          <span>✈️</span> Telegram orqali kirish
         </a>
 
-        <p className="mt-4 text-xs text-slate-500">
-          Ilovaga faqat ruxsat etilgan Telegram akkaunt kira oladi. Tugmani
-          bosing → botga o&apos;ting → «Ilovaga kirish» havolasini bosing.
+        <p style={{ marginTop: "var(--space-3)", fontSize: "var(--text-xs)", color: "var(--color-text-muted)", lineHeight: "var(--leading-normal)" }}>
+          Ilovaga faqat ruxsat etilgan Telegram akkaunt kira oladi. Tugmani bosing → botga o&apos;ting → «Ilovaga kirish» havolasini bosing.
         </p>
       </div>
     </main>

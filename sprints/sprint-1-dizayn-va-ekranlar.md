@@ -91,3 +91,6 @@ maydonlari) aniq belgilanган bo'lishi shart.
 
 ### 2026-07-14
 - **Eslatma:** Foydalanuvchi `229bf3d` commitini "Sprint 1 / 1-qism" deb nomladi (Telegram orqali kirish), ammo mazmunan bu ish (Telegram deep-link avtorizatsiya + backend/Prisma asosi) **Sprint 2**ning (DB/backend/avtorizatsiya) qamroviga tegishli — batafsil hisobot [`sprint-2`](sprint-2-db-bekend-avtorizatsiya-crud.md#-bajarilgan-ishlar-hisobot) faylida. Bu sprintning (dizayn/ekranlar) o'zida hali amaliy ish **boshlanmagan**, DoD o'zgarishsiz qoladi.
+
+### 2026-07-16
+- **Eslatma:** Foydalanuvchi "Aurora Design System" (Inter shrifti, indigo asosiy rang, LIGHT mavzu) asosida 4 ta ekran maketi (Maqsadlar, Vazifalar, Kun tahlili, AI xulosasi) taqdim etdi va bular Sprint 2 ishi doirasida ilovaga integratsiya qilindi (`cd608ab`, batafsil — [`sprint-2`](sprint-2-db-bekend-avtorizatsiya-crud.md#2026-07-16) faylida). Bu rejadagi 9 ta ekrandan faqat 4 tasi va faqat light rejim — shuning uchun DoD bandlari ("barcha 9 ta ekran, light+dark", "12+ komponent", "dark rejim") hali **to'liq bajarilgan emas** deb belgilanadi. Dizayn tizimi tokenlari (`globals.css`) va ~10 ta qayta ishlatiladigan komponent (`ui.tsx`, `Sidebar.tsx`) allaqachon amalda ishlatilmoqda.

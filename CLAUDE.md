@@ -62,6 +62,12 @@ Push qilishdan oldingi tartib:
 - **Qaror:** Avtorizatsiya usuli — Email+parol (NextAuth) o'rniga **Telegram deep-link avtorizatsiya**, faqat bitta ruxsat etilgan Telegram ID (`ALLOWED_TELEGRAM_ID`) uchun, stateless JWT (`jose`) sessiya bilan. — **Sabab:** loyiha shaxsiy, bitta foydalanuvchi uchun mo'ljallangan; ro'yxatdan o'tish/parol boshqaruvi ortiqcha; stateless JWT serverless (Vercel) muhitida DB'siz ishlaydi. (Sprint 2)
 - **Qaror:** Texnik stack tasdiqlandi va amalda qo'llanildi: Next.js 14 + TypeScript + Tailwind, grammY (Telegram bot/webhook), `jose` (JWT), Prisma (ma'lumot modeli). — **Sabab:** rejadagi stack ishlab chiqarishda tasdiqlandi, birinchi ishlaydigan skelet shu asosda qurildi. (Sprint 2)
 
+### 2026-07-16
+- **Qaror:** Vizual dizayn tizimi sifatida "Aurora Design System" (Inter shrifti, indigo asosiy rang, LIGHT mavzu) qabul qilindi; ilova avvalgi DARK mavzudan LIGHT'ga o'tkazildi. — **Sabab:** foydalanuvchi tomonidan Sprint 1 uchun taqdim etilgan tayyor ekran maketlariga (Maqsadlar, Vazifalar, Kun tahlili, AI xulosasi) mos kelish. (Sprint 1/2)
+- **Qaror:** Ma'lumot modelida `Task` endi `Milestone` orqali emas, to'g'ridan-to'g'ri `Goal`ga (`Task.goalId`) bog'lanadi; `Milestone` modeli schemada qoladi, lekin hozircha UI'da ishlatilmaydi. — **Sabab:** taqdim etilgan dizaynda kichik maqsad (milestone) bosqichi yo'q, vazifalar bevosita maqsadga tegishli ko'rsatilgan; MVP soddaligi uchun shu yondashuv tanlandi. (Sprint 2)
+- **Qaror:** Maqsad progressi va holati (REJADA/JARAYONDA/BAJARILDI) qo'lda emas, unga bog'langan vazifalar holatidan **serverda avtomatik** hisoblanadi. — **Sabab:** foydalanuvchi progressni qo'lda kiritmasligi, ma'lumot doim izchil bo'lishi kerak. (Sprint 2)
+- **Qaror:** Ishlab chiqilgan bazaviy migratsiya sifatida hozircha `prisma db push` ishlatiladi; versiyalangan `prisma migrate` fayllari keyinroq qo'shiladi. — **Sabab:** rivojlanish bosqichida tezlik; production migratsiya tarixi keyingi bosqichda rasmiylashtiriladi. (Sprint 2)
+
 ## 📏 Uslub qoidalari
 - Barcha hujjat va izohlar **o'zbek tilida**.
 - Kod izohlari va commit xabarlari qisqa va aniq.

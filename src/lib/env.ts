@@ -37,12 +37,12 @@ export const env = {
   get webhookSecret() {
     return req("TELEGRAM_WEBHOOK_SECRET");
   },
-  // Anthropic Claude API kaliti — maxfiy, AI javoblari uchun SHART
-  get anthropicApiKey() {
-    return req("ANTHROPIC_API_KEY");
+  // Google Gemini API kaliti — maxfiy, AI javoblari uchun SHART
+  get geminiApiKey() {
+    return req("GEMINI_API_KEY");
   },
-  // AI modeli — maxfiy emas, default kodda
-  get aiModel() {
-    return process.env.AI_MODEL ?? "claude-opus-4-8";
+  // AI modeli — maxfiy emas, default kodda (GEMINI_MODEL orqali almashtiriladi)
+  get geminiModel() {
+    return process.env.GEMINI_MODEL ?? "gemini-flash-latest";
   },
 };

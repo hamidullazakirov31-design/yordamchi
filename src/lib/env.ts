@@ -41,8 +41,9 @@ export const env = {
   get geminiApiKey() {
     return req("GEMINI_API_KEY");
   },
-  // AI modeli — maxfiy emas, default kodda (GEMINI_MODEL orqali almashtiriladi)
+  // AI modeli — maxfiy emas, default kodda (GEMINI_MODEL orqali almashtiriladi).
+  // flash-lite: tez va barqaror (flash-latest "thinking" tufayli sekin/band bo'ladi).
   get geminiModel() {
-    return process.env.GEMINI_MODEL ?? "gemini-flash-latest";
+    return process.env.GEMINI_MODEL ?? "gemini-flash-lite-latest";
   },
 };

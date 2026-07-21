@@ -49,7 +49,7 @@ ${bilimBazasiMatni(bilimlar)}
     body: JSON.stringify({
       system_instruction: { parts: [{ text: systemPrompt }] },
       contents: [{ role: "user", parts: [{ text: userMessage }] }],
-      generationConfig: { maxOutputTokens: 2048, temperature: 0.7 },
+      generationConfig: { maxOutputTokens: 1024, temperature: 0.7 },
     }),
   });
 

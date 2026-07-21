@@ -37,4 +37,12 @@ export const env = {
   get webhookSecret() {
     return req("TELEGRAM_WEBHOOK_SECRET");
   },
+  // Anthropic Claude API kaliti — maxfiy, AI javoblari uchun SHART
+  get anthropicApiKey() {
+    return req("ANTHROPIC_API_KEY");
+  },
+  // AI modeli — maxfiy emas, default kodda
+  get aiModel() {
+    return process.env.AI_MODEL ?? "claude-opus-4-8";
+  },
 };

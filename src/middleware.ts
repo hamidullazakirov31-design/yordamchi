@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { verifySession, SESSION_COOKIE } from "@/lib/auth";
 
 // Himoyalangan sahifa prefikslari
-const PROTECTED = ["/goals", "/tasks", "/kun-tahlili", "/ai-xulosasi", "/dashboard"];
+const PROTECTED = ["/goals", "/tasks", "/kun-tahlili", "/ai-xulosasi", "/bot", "/dashboard"];
 
 export async function middleware(req: NextRequest): Promise<NextResponse> {
   const token = req.cookies.get(SESSION_COOKIE)?.value;
@@ -44,6 +44,7 @@ export const config = {
     "/tasks/:path*",
     "/kun-tahlili/:path*",
     "/ai-xulosasi/:path*",
+    "/bot/:path*",
     "/dashboard/:path*",
     "/login",
   ],

@@ -115,3 +115,22 @@ model Reminder {
 
   task Task @relation(fields: [taskId], references: [id], onDelete: Cascade)
 }
+
+// AI botning "o'zini tutishi" — system prompt (yagona sozlama qatori).
+// id = "default" bo'lgan bitta qator ishlatiladi (singleton).
+model BotConfig {
+  id              String   @id @default("default")
+  systemPrompt    String
+  yangilanganSana DateTime @default(now()) @updatedAt
+}
+
+// AI bot javob berishda tayanadigan bilim bazasi yozuvlari.
+// Har bir yozuv — mavzu (sarlavha) + matn. Faol yozuvlar kontekstga qo'shiladi.
+model KnowledgeItem {
+  id              String   @id @default(cuid())
+  sarlavha        String
+  matn            String
+  faol            Boolean  @default(true)
+  yaratilganSana  DateTime @default(now())
+  yangilanganSana DateTime @default(now()) @updatedAt
+}

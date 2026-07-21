@@ -53,6 +53,16 @@ const NAV_ITEMS: NavItem[] = [
       </svg>
     ),
   },
+  {
+    href: "/bot",
+    label: "AI bot",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="4" y="8" width="16" height="12" rx="3" />
+        <path d="M12 8V4M9 14h.01M15 14h.01" />
+      </svg>
+    ),
+  },
 ];
 
 export function Sidebar({ ism }: { ism?: string }) {
